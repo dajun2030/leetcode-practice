@@ -317,3 +317,21 @@ if __name__ == "__main__":
     print("2. ❌ 一个为空一个不为空 → 不同")
     print("3. ❌ 节点值不相等 → 不同")
     print("4. 🔍 递归检查: 左子树相同 AND 右子树相同 → 相同")
+
+    #########################################################################
+    #BFS
+    from collections import deque
+    class Solution:
+        def isSameTree(self,p,q):
+            queue=deque([p,q])
+            while queue:
+                node_p,node_q=queue.popleft()
+                if not node_p and not node_q:
+                    continue
+
+                if not node_p or not node_q or node_p.val !=node_q.val:
+                    return False
+                queue.append([node_p.left,node_q.left])
+                queue.append([node_p.right,node_q.right])
+
+            return True

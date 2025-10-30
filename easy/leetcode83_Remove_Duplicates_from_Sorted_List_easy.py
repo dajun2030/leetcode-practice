@@ -68,3 +68,19 @@ if __name__ == "__main__":
         print(f"输出: ", end="")
         print_linked_list(result)
         print()
+
+################################################
+#递归法
+def deleteDuplicates_recursive(head):
+    if not head or not head.next:
+        return head
+
+    head.next=deleteDuplicates_recursive(head.next)
+
+    if head.val==head.next.val:
+        return head.next
+    else:
+        return head
+
+
+

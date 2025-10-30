@@ -17,14 +17,35 @@
 #     return []
 
 #两次遍历哈希表
-def twoSum(nums, target):
-    nums_map={}
-    for i,num in enumerate(nums):
-        nums_map[num]=i
+# def twoSum(nums, target):
+#     nums_map={}
+#     for i,num in enumerate(nums):
+#         nums_map[num]=i
+#
+#     for i,num in enumerate(nums):
+#         complement=target-num
+#         if complement in nums_map and nums_map[complement]!=i:
+#             return [i,nums_map[complement]]
+#     return []
 
-    for i,num in enumerate(nums):
-        complement=target-num
-        if complement in nums_map and nums_map[complement]!=i:
-            return [i,nums_map[complement]]
+#排序+双指针
+def twoSum(nums, target):
+    indexed_nums=[(num,i) for i,num in enumerate(nums)]
+
+    indexed_nums.sort()
+
+    left,right=0,len(nums)-1
+    while left<right:
+        current_sum=indexed_nums[left][0]+indexed_nums[right][0]
+        if current_sum==target:
+            return [indexed_nums[left][1],indexed_nums[right][1]]
+        elif current_sum<target:
+            left+=1
+        else:
+            right-=1
     return []
+
+
+
+
 print(twoSum(([2,7,11,15]),9))
